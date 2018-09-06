@@ -8,18 +8,16 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    // if (msg.author.id != client.user.id) {
-    //     msg.channel.send(msg.content.split('').reverse().join(''));
-    // }
-
     switch(msg.content) {
         case '!geisha':
-            const geishaGIF = new Attachment('https://i.kinja-img.com/gawker-media/image/upload/t_original/nxriqrwngk6j2ucts2ev.gif');
-            message.channel.send(geishaGIF)
+                    const geishaGIF = new Attachment('https://i.kinja-img.com/gawker-media/image/upload/t_original/nxriqrwngk6j2ucts2ev.gif');
+                    msg.channel.send(geishaGIF)
+                    break;
 
         case 'ping': 
                     msg.reply('Pong!');
                     break;
+                    
         case 'opening hours':
                     msg.reply('Monday to Friday: 09:00H to 18:00H');
                     msg.reply('Calle Castelló, 19, Local izquierdo');
@@ -34,8 +32,10 @@ client.on('message', msg => {
     console.log(msg)
 });
 
-client.on('guildMemberAdd', (member) => {
-    defaultChannel.send(`Oh hey ${member.name} welcome to our channel`);
+client.on('guildMemberAdd', member => {
+    const channel = member.guild.channels.find(ch => ch.name === 'general');
+    if (!channel) return;
+    channel.send(`The geisha robots welcome you, ${member}`);
 });
 
 client.login(token);
