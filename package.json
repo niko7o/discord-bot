@@ -1,0 +1,17 @@
+{
+  "name": "discord-chatbot",
+  "version": "1.0.0",
+  "description": "a lightweight chatbot for discord",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nikoto",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "dotenv": "^6.0.0"
+  }
+}
