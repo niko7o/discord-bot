@@ -40,7 +40,6 @@ client.on('message', message => {
                     break;
             
         case '!play':
-                    // @TO-DO: Since we're using ytdl, make sure the link provided is actually from youtube
                     if(!args[1]) {
                         message.channel.send('Please provide a link for the youtube video you want to listen to..');
                         return;
