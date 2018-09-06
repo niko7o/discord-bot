@@ -17,16 +17,6 @@ client.on('message', msg => {
         case 'ping': 
                     msg.reply('Pong!');
                     break;
-                    
-        case 'opening hours':
-                    msg.reply('Monday to Friday: 09:00H to 18:00H');
-                    msg.reply('Calle Castelló, 19, Local izquierdo');
-                    break;
-
-        case 'becurious':
-                    msg.reply('Becurious gallery: Legends, by Manu Campa:');
-                    msg.reply('Starts on Thursday, September 27th');
-                    msg.reply('Ends on Friday, October 26th');
     }
 
     console.log(msg)
