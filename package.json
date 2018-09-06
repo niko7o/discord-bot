@@ -12,6 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "dotenv": "^6.0.0"
+    "dotenv": "^6.0.0",
+    "ffmpeg": "0.0.4",
+    "opusscript": "0.0.6",
+    "ytdl-core": "^0.25.2"
   }
 }
