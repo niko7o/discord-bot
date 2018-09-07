@@ -16,7 +16,7 @@ Start typing in the discord channel!
 
 # Functionalities
 
-- `info` : Gives you basic info on the developer
+- `!info` : Gives you basic info on the developer
 - `!geisha` : Returns a cool geisha gif from ghost in the shell
 
 - `!play <youtubeURL>` : Plays a youtube video, remove the < and >
