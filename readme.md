@@ -33,3 +33,4 @@ Start typing in the discord channel!
 - `ytdl-core`
 - `axios`
     - polls twitch for stream info
+- `colors/safe`
