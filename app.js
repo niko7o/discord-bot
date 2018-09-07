@@ -5,6 +5,7 @@ const client = new Client();
 const token = process.env.DISCORD_BOT_SECRET;
 const ytdl = require('ytdl-core');
 const axios = require('axios');
+const colors = require('colors/safe');
 
 var servers = {};
 
@@ -21,14 +22,16 @@ function play(connection, message) {
         filter: 'audioonly',
         quality: 'highestaudio'
     }));
+
     server.queue.shift();
+    
     server.dispatcher.on('end', () => {
         server.queue[0] ? play(connection, message) : connection.disconnect();
     })
 }
 
 client.on('ready', () => {
-    console.log(`${client.user.username} has initialized and is ready.`);
+    console.log(colors.green(client.user.username) + ' has ' + colors.yellow('started') + ' and is ' + colors.green('ready'));
     /* @TO-DO: set an automatic live stream checker that polls Twitch every 10 minutes for a specific user */
     // setInterval(function() {
     //     twitch_get_channel_status('Sacriel');
@@ -45,7 +48,6 @@ client.on('message', message => {
                         if (!res.data.data[0]) {
                             message.channel.send(`Looks like ${args[1]} isn't online.. sorry!`)
                         } else {
-                            // console.log(res.data.data[0])
                             let thumbURL = res.data.data[0].thumbnail_url;
                             let finalURL = thumbURL.replace('{width}', '400').replace('{height}', '250');
                             const thumbnail = new Attachment(finalURL);
