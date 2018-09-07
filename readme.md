@@ -1,10 +1,11 @@
 # About
 
 Geisha is a bot for Discord created in node.js<br>
-Make sure you have ffmpeg installed to be able to run the bot<br>
-Join the official channel at https://discord.gg/66XNvzm or setup the discord bot with your own!
+Make sure you have ffmpeg installed to run the bot<br>
 
 # Instructions
+
+Join the official channel to try commands at https://discord.gg/66XNvzm 
 
 Clone the repo and follow the instructions in this order:
 
