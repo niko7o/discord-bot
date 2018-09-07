@@ -3,10 +3,16 @@ require('dotenv').load();
 const { Client, Attachment } = require('discord.js');
 const client = new Client();
 const token = process.env.DISCORD_BOT_SECRET;
-const ytdl = require('ytdl-core')
+const ytdl = require('ytdl-core');
+const axios = require('axios');
 
-// We want each server to have its own queue, otherwise each discord voice channel would share one only queue
 var servers = {};
+
+var axios_options = {
+    headers: {
+        'Client-ID': process.env.TWITCH_CLIENT_ID
+    }
+}
 
 function play(connection, message) {
     var server = servers[message.guild.id];
@@ -23,20 +29,46 @@ function play(connection, message) {
 
 client.on('ready', () => {
     console.log(`${client.user.username} has initialized and is ready.`);
+    /* @TO-DO: set an automatic live stream checker that polls Twitch every 10 minutes for a specific user */
+    // setInterval(function() {
+    //     twitch_get_channel_status('Sacriel');
+    // }, 600000);
 });
 
 client.on('message', message => {
     let args = message.content.split(' ');
 
     switch(args[0].toLowerCase()) {
-        case 'info':
+        case '!twitch' : 
+                    axios.get(`https://api.twitch.tv/helix/streams?user_login=${args[1]}`, axios_options)
+                    .then(res => {
+                        if (!res.data.data[0]) {
+                            message.channel.send(`Looks like ${args[1]} isn't online.. sorry!`)
+                        } else {
+                            // console.log(res.data.data[0])
+                            let thumbURL = res.data.data[0].thumbnail_url;
+                            let finalURL = thumbURL.replace('{width}', '400').replace('{height}', '250');
+                            const thumbnail = new Attachment(finalURL);
+                            message.channel.send(`${args[1]} is ON!`);
+                            message.channel.send(`${res.data.data[0].title}`);
+                            message.channel.send(thumbnail);
+                            message.channel.send(`Viewers: ${res.data.data[0].viewer_count}`);
+                            message.channel.send(`Visit at: <http://twitch.tv/${args[1]}>`)
+                        }
+                    })
+                    .catch(err => { 
+                        console.log(err) 
+                    })
+                    break;
+
+        case '!info':
                     message.channel.send('Geisha is a node.js powered bot developed by Nikoto')
                     message.channel.send('Feel free to visit his github @ https://github.com/nikotomad')
                     break;
 
         case '!geisha':
-                    const geishaGIF = new Attachment('https://i.kinja-img.com/gawker-media/image/upload/t_original/nxriqrwngk6j2ucts2ev.gif');
-                    message.channel.send(geishaGIF)
+                    const geisha = new Attachment('https://i.kinja-img.com/gawker-media/image/upload/t_original/nxriqrwngk6j2ucts2ev.gif');
+                    message.channel.send(geisha)
                     break;
             
         case '!play':
@@ -87,8 +119,7 @@ client.on('message', message => {
 
 client.on('guildMemberAdd', member => {
     const channel = member.guild.channels.find(ch => ch.name === 'general');
-    if (!channel) return;
-    channel.send(`The geisha robots welcome you, ${member}`);
+    channel.send(`The geisha robot welcomes you, ${member}`);
 });
 
 client.login(token);

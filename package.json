@@ -11,6 +11,7 @@
   "author": "nikoto",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "discord.js": "^11.4.2",
     "dotenv": "^6.0.0",
     "ffmpeg": "0.0.4",

@@ -14,13 +14,15 @@ Make sure you have ffmpeg installed to be able to run the bot
 - `info` : Gives you basic info on the developer
 - `!geisha` : Returns a cool geisha gif from ghost in the shell
 
-YouTube song player inside voice channels with independant server queues per channel
-- `!play youtubeurlhere` : Plays a youtube video
+- `!play <youtubeURL>` : Plays a youtube video, remove the < and >
 - `!skip` : Skips to next song in the channel's queue
 - `!stop` : Kicks the bot and stops playing music overall
+
+- `!twitch <user>` : Checks if a Twitch streamer is on, and provides info for said user.
 
 # Libraries
 
 - `ffmpeg`
 - `discord.js`
 - `ytdl-core`
+- `axios`
