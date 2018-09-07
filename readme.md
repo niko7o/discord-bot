@@ -17,6 +17,7 @@ Start typing in the discord channel!
 
 # Functionalities
 
+- event handler on channel join that welcomes new users
 - `!info` : Gives you basic info on the developer
 - `!geisha` : Returns a cool geisha gif from ghost in the shell
 
